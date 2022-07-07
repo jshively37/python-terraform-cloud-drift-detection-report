@@ -41,9 +41,11 @@ def api_request(slug, headers=TFCB_HEADERS, method="GET"):
         print(e)
 
 
-def retrieve_drift_status():
+def retrieve_workspaces():
     slug = TFCB_SLUGS['list_workspaces']
-    response = api_request(slug)
+    return api_request(slug)
+
+def parse_workspace_response(response):
     drift_payload = []
     for workspace in response['data']:
         drift_status_url = ""
@@ -80,5 +82,6 @@ if __name__ == "__main__":
     if not os.path.isdir(OUTPUT_DIR):
         print("Output directory does not exist. Creating output directory")
         os.makedirs(OUTPUT_DIR)
-    drift_payload = retrieve_drift_status()
+    workspace_reponse = retrieve_workspaces()
+    drift_payload = parse_workspace_response(workspace_reponse)
     create_csv(drift_payload)
