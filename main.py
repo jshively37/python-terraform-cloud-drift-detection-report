@@ -45,6 +45,7 @@ def retrieve_workspaces():
     slug = TFCB_SLUGS['list_workspaces']
     return api_request(slug)
 
+
 def parse_workspace_response(response):
     drift_payload = []
     for workspace in response['data']:
