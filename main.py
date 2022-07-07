@@ -54,16 +54,16 @@ def parse_workspace_response(response):
         drift_ran_date = ""
         workspace_name = workspace['attributes']['name']
         if drift_configured := workspace['attributes']['drift-detection']:
-            # If drift was corrected recently but a new drift assesment has not occured the links key
-            # is not available in the payload. This section handles those cases and sets drift_detected
-            # to pending run. It might take 24 hours for TFCB to perform a new drift run.
+            print(workspace)
+            # If drift is enabled but no links section in payload we set drift_detected to false.
+            # This matches the behavior in the dashboard of no drift detected in the workspace.
             try:
                 drift_status_url = workspace['relationships']['current-assessment-result']['links']['related']
                 drift_response = api_request(drift_status_url)
                 drift_detected = drift_response['data']['attributes']['drifted']
                 drift_ran_date = drift_response['data']['attributes']['created-at'].split(".")[0]
             except KeyError:
-                drift_detected = "pending_new_drift_run"
+                drift_detected = False
                 print(f"Workspace: {workspace_name} has drift enabled but pending drift run")
         drift_payload.append({
             "workspace_name": workspace_name,
