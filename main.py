@@ -54,9 +54,8 @@ def parse_workspace_response(response):
         drift_ran_date = ""
         workspace_name = workspace['attributes']['name']
         if drift_configured := workspace['attributes']['drift-detection']:
-            print(workspace)
             # If drift is enabled but no links section in payload we set drift_detected to false.
-            # This matches the behavior in the dashboard of no drift detected in the workspace.
+            # This matches the dashboard behavior of no drift detected.
             try:
                 drift_status_url = workspace['relationships']['current-assessment-result']['links']['related']
                 drift_response = api_request(drift_status_url)
@@ -64,7 +63,6 @@ def parse_workspace_response(response):
                 drift_ran_date = drift_response['data']['attributes']['created-at'].split(".")[0]
             except KeyError:
                 drift_detected = False
-                print(f"Workspace: {workspace_name} has drift enabled but pending drift run")
         drift_payload.append({
             "workspace_name": workspace_name,
             "drift_configured": drift_configured,
@@ -90,6 +88,12 @@ if __name__ == "__main__":
     if not os.path.isdir(OUTPUT_DIR):
         print("Output directory does not exist. Creating output directory")
         os.makedirs(OUTPUT_DIR)
+
+    # Retrieve all the workspaces
     workspace_reponse = retrieve_workspaces()
+
+    # Parse the data retrieved
     drift_payload = parse_workspace_response(workspace_reponse)
+
+    # Create a csv
     create_csv(drift_payload)
