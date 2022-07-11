@@ -20,12 +20,12 @@ try:
 except ImportError:
     print("python-dotenv not found")
 
-# API Endpoints
+# API Endpoint Dictionary
 TFCB_SLUGS = {
     "list_workspaces": f"/api/v2/organizations/{TFCB_ORG}/workspaces"
 }
 
-# REST API Header Information
+# Base REST API Header
 TFCB_HEADERS = {
     "Authorization": f"Bearer {TFCB_API_KEY}"
 }
