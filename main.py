@@ -54,13 +54,16 @@ def parse_workspace_response(response):
         drift_ran_date = ""
         workspace_name = workspace['attributes']['name']
         if drift_configured := workspace['attributes']['drift-detection']:
-            # If drift is enabled but no links section in payload we set drift_detected to false.
+            # If drift is enabled but no links section in payload we set
+            # drift_detected to false.
             # This matches the dashboard behavior of no drift detected.
             try:
-                drift_status_url = workspace['relationships']['current-assessment-result']['links']['related']
+                drift_status_url = workspace['relationships'][
+                    'current-assessment-result']['links']['related']
                 drift_response = api_request(drift_status_url)
                 drift_detected = drift_response['data']['attributes']['drifted']
-                drift_ran_date = drift_response['data']['attributes']['created-at'].split(".")[0]
+                drift_ran_date = drift_response['data'][
+                    'attributes']['created-at'].split(".")[0]
             except KeyError:
                 drift_detected = False
         drift_payload.append({
