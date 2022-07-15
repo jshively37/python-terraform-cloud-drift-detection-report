@@ -40,7 +40,7 @@ This project uses `python-dotenv` library. This expects a file called `.env` whi
 
 ### Local Execution
 
-Virtual environments are highly recommended for local execution. A Pipfile is included if you are using (pipenv)[https://pipenv.pypa.io/en/latest/]. If you are not using pipenv you can create a virtual environment using the default (venv)[https://docs.python.org/3/library/venv.html].
+Virtual environments are highly recommended for local execution. A Pipfile is included if you are using [pipenv](https://pipenv.pypa.io/en/latest/). If you are not using pipenv you can create a virtual environment using the default [venv](https://docs.python.org/3/library/venv.html).
 
 If you are creating a virtual environment using venv you will need to install the dependancies: `pip install -r requirements.txt`
 
