@@ -41,10 +41,12 @@ After creating the `.env` file you can run the script by typing in `python main.
 
 ### Docker Execution
 
-A Docker file has been included.
+A Docker file is included to simplify Python and its dependencies.
 
 To build the image: `docker build -t drift_container .`
 
 To run the image: `docker run -v $(pwd):/home/devuser -ti drift_container`
 
 The -v will mount the local directory to the /home/devuser directory. This will allow the container to read and write from the local directory where the script resides.
+
+NOTE: You will still need to have the `.env` file defined in the directory.
