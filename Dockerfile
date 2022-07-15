@@ -13,4 +13,6 @@ RUN pip install -r /home/$USERNAME/requirements-dev.txt
 
 USER $USERNAME
 
+WORKDIR /home/${USERNAME}
+
 ENTRYPOINT ["/bin/bash"]

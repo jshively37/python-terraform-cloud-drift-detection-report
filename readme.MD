@@ -26,7 +26,7 @@ Developed on `python==3.10.4`
 
 Python dependancies documented in `requirements.txt`
 
-### Execution
+### Variables
 
 This project uses `python-dotenv` library. This expects a file called `.env` which contains the environment variables. An example `.env` has been included in `.env.example`.
 
@@ -37,7 +37,14 @@ This project uses `python-dotenv` library. This expects a file called `.env` whi
 | TFCB_API_KEY | string | API key created in TFCB                    | a1b2c3d4                 |
 | OUTPUT_DIR   | string | name of directory to write the output file | output                   |
 
-After creating the `.env` file you can run the script by typing in `python main.py`.
+
+### Local Execution
+
+Virtual environments are highly recommended for local execution. A Pipfile is included if you are using (pipenv)[https://pipenv.pypa.io/en/latest/]. If you are not using pipenv you can create a virtual environment using the default (venv)[https://docs.python.org/3/library/venv.html].
+
+If you are creating a virtual environment using venv you will need to install the dependancies: `pip install -r requirements.txt`
+
+After creating the `.env` file and virtual environment you can run the script by typing in `python main.py`.
 
 ### Docker Execution
 
@@ -49,4 +56,4 @@ To run the image: `docker run -v $(pwd):/home/devuser -ti drift_container`
 
 The -v will mount the local directory to the /home/devuser directory. This will allow the container to read and write from the local directory where the script resides.
 
-NOTE: You will still need to have the `.env` file defined in the directory.
+After launching the docker container type in `python main.py` to run the script.
