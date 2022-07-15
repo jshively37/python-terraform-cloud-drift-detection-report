@@ -164,3 +164,6 @@ output/
 
 # Mac
 .DS_Store
+
+# Docker
+.bash_history

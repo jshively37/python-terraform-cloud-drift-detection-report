@@ -11,6 +11,6 @@ COPY requirements*.txt /home/$USERNAME/
 
 RUN pip install -r /home/$USERNAME/requirements-dev.txt
 
-RUN  pre-commit install
-
 USER $USERNAME
+
+ENTRYPOINT ["/bin/bash"]

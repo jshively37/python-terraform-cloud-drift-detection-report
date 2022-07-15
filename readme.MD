@@ -38,3 +38,13 @@ This project uses `python-dotenv` library. This expects a file called `.env` whi
 | OUTPUT_DIR   | string | name of directory to write the output file | output                   |
 
 After creating the `.env` file you can run the script by typing in `python main.py`.
+
+### Docker Execution
+
+A Docker file has been included.
+
+To build the image: `docker build -t drift_container .`
+
+To run the image: `docker run -v $(pwd):/home/devuser -ti drift_container`
+
+The -v will mount the local directory to the /home/devuser directory. This will allow the container to read and write from the local directory where the script resides.
